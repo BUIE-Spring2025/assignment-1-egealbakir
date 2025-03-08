@@ -1,38 +1,49 @@
 def int_to_roman(num):
     s = ''
-    a=num//1000
-    b=num-(a*1000)
-    c = b // 500
-    d = b - (c * 500)
-    e = d // 100
-    f=d-(e*100)
-    g=f//50
-    h=f-(g*50)
-    i=h//10
-    j=h-(i*10)
-    k=j//5
-    l=j-(k*5)
-    m=l//1
-    while a>=1:
-        s=s+'M'
-        a=a-1
-    while c>=1:
-        s=s+'D'
-        c=c-1
-    while e>=1:
-        s=s+'C'
-        e=e-1
-    while g>=1:
-        s=s+'L'
-        g=g-1
-    while i>=1:
-        s=s+'X'
-        i=i-1
-    while k>=1:
-        s=s+'V'
-        k=k-1
-    while m>=1:
-        s=s+'I'
-        m=m-1
-
+    a = num // 1000
+    b = (num % 1000) // 100
+    c = (num % 100) // 10
+    d = num % 10
+    while a >= 1:
+        s += 'M'
+        a -= 1
+    while b >= 1:
+        if b == 9:
+            s += 'CM'
+            b -= 9
+        if b >= 5:
+            s += 'D'
+            b -= 5
+        if b == 4:
+            s += 'CD'
+            b -= 4
+        if b >= 1:
+            s += 'C'
+            b -= 1
+    while c >= 1:
+        if c == 9:
+            s += 'XC'
+            c -= 9
+        if c >= 5:
+            s += 'L'
+            c -= 5
+        if c == 4:
+            s += 'XL'
+            c -= 4
+        if c >= 1:
+            s += 'X'
+            c -= 1
+    while d >= 1:
+        if d == 9:
+            s += 'IX'
+            d -= 9
+        if d >= 5:
+            s += 'V'
+            d -= 5
+        if d == 4:
+            s += 'IV'
+            d-=4
+        if d >= 1:
+            s += 'I'
+            d -= 1
     return s
